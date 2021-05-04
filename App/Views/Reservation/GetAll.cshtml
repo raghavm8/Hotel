@@ -1,0 +1,71 @@
+﻿@model IEnumerable<App.Models.Reservation>
+
+@{
+    ViewBag.Title = "GetAll";
+}
+
+<h2>GetAll</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Reservation_Id)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Guest_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Room_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Reservation_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Members)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Check_In_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Check_Out_Date)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    @*<td>
+            @Html.DisplayFor(modelItem => item.Reservation_Id)
+        </td>*@
+    @Html.DisplayFor(modelItem => item.Reservation_Id)
+    <td>
+        @Html.DisplayFor(modelItem => item.Guest_Id)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Room_Id)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Reservation_Date)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Members)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Check_In_Date)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Check_Out_Date)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new {  id=item.Reservation_Id  }) |
+        @Html.ActionLink("Details", "Details", new { id = item.Reservation_Id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.Reservation_Id })
+    </td>
+</tr>
+}
+
+</table>

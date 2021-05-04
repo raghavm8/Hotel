@@ -1,0 +1,74 @@
+﻿@model IEnumerable<App.Models.Reservation>
+
+@{
+    ViewBag.Title = "GetReservationsForGuest";
+    int i = 0;
+}
+
+<h2>GetReservationsForGuest</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Room_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Reservation_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Members)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Check_In_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Check_Out_Date)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+
+        i = item.Guest_Id;
+
+        <tr>
+            @Html.HiddenFor(modelItem => item.Reservation_Id)
+            @Html.HiddenFor(modelItem => item.Guest_Id)
+            <td>
+                @Html.DisplayFor(modelItem => item.Room_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reservation_Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Members)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Check_In_Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Check_Out_Date)
+            </td>
+        </tr>
+    }
+
+</table>
+
+@{
+    if (i != 0)
+    {
+        <div>
+            @Html.ActionLink("Back", "Details", new { id = i });
+        </div>
+    }
+    else
+    {
+        <div>
+            @Html.ActionLink("Back", "index");
+        </div>
+    }
+}

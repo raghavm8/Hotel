@@ -1,0 +1,60 @@
+﻿@model App.Models.Guest
+
+<div>
+    <h4>Guest</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Guest_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Guest_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Aadhar_Number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Aadhar_Number)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("History", "GetReservationsForGuest",  new { id = Model.Guest_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

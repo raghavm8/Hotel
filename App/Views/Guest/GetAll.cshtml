@@ -1,0 +1,60 @@
+﻿@model IEnumerable<App.Models.Guest>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Guest_Id)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Aadhar_Number)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    @*<td>
+            @Html.DisplayFor(modelItem => item.Guest_Id)
+      </td>*@
+    @Html.HiddenFor(modelItem => item.Guest_Id)
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Email)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Phone)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.City)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Aadhar_Number)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.Guest_Id }) |
+        @Html.ActionLink("Details", "Details", new { id = item.Guest_Id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.Guest_Id }) |
+        @Html.ActionLink("Add Reservation", "Create", "Reservation", new { id = item.Guest_Id })
+    </td>
+</tr>
+}
+
+</table>
+
