@@ -4,7 +4,15 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="HotelDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="HotelDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Counter">
+          <Key>
+            <PropertyRef Name="RoomType" />
+          </Key>
+          <Property Name="countId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoomType" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="count" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Guest">
           <Key>
             <PropertyRef Name="Guest_Id" />
@@ -52,6 +60,7 @@
           <Property Name="Status_Id" Type="int" />
           <Property Name="RoomType" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="Price" Type="int" Nullable="false" />
+          <Property Name="Available" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Status">
           <Key>
@@ -121,6 +130,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="HotelDBModelStoreContainer">
+          <EntitySet Name="Counter" EntityType="Self.Counter" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Guest" EntityType="Self.Guest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="payments" EntityType="Self.payments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reservation" EntityType="Self.Reservation" Schema="dbo" store:Type="Tables" />
@@ -148,8 +158,7 @@
             <End Role="Room" EntitySet="Room" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HotelDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -209,6 +218,7 @@
           <Property Name="Price" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Reservations" Relationship="Self.FK__Reservati__Room___2F10007B" FromRole="Room" ToRole="Reservation" />
           <NavigationProperty Name="Status" Relationship="Self.FK__Room__Status_Id__2D27B809" FromRole="Room" ToRole="Status" />
+          <Property Name="Available" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Status">
           <Key>
@@ -305,7 +315,16 @@
             <End Role="Status" EntitySet="Status" />
             <End Role="Room" EntitySet="Rooms" />
           </AssociationSet>
+          <EntitySet Name="Counters" EntityType="HotelDBModel.Counter" />
         </EntityContainer>
+        <EntityType Name="Counter">
+          <Key>
+            <PropertyRef Name="RoomType" />
+          </Key>
+          <Property Name="countId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoomType" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="count" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -358,6 +377,7 @@
           <EntitySetMapping Name="Rooms">
             <EntityTypeMapping TypeName="HotelDBModel.Room">
               <MappingFragment StoreEntitySet="Room">
+                <ScalarProperty Name="Available" ColumnName="Available" />
                 <ScalarProperty Name="Room_Id" ColumnName="Room_Id" />
                 <ScalarProperty Name="Status_Id" ColumnName="Status_Id" />
                 <ScalarProperty Name="RoomType" ColumnName="RoomType" />
@@ -370,6 +390,15 @@
               <MappingFragment StoreEntitySet="Status">
                 <ScalarProperty Name="Status_Id" ColumnName="Status_Id" />
                 <ScalarProperty Name="Status_Name" ColumnName="Status_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Counters">
+            <EntityTypeMapping TypeName="HotelDBModel.Counter">
+              <MappingFragment StoreEntitySet="Counter">
+                <ScalarProperty Name="count" ColumnName="count" />
+                <ScalarProperty Name="RoomType" ColumnName="RoomType" />
+                <ScalarProperty Name="countId" ColumnName="countId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

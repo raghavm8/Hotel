@@ -7,6 +7,8 @@ using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Mvc;
 using App.Models;
+using App.repositories;
+using App.ViewModel;
 
 namespace App.Controllers
 {
@@ -90,6 +92,8 @@ namespace App.Controllers
 
         public ActionResult Create()
         {
+            Room t = new Room();
+            ViewBag.values = t.type;
             return View();
         }
 
@@ -100,7 +104,10 @@ namespace App.Controllers
             {
                 string cookieValue = string.Empty;
                 client.BaseAddress = new Uri(BaseAddress);
-                m.Status_Id = 5;
+                
+                m.Status_Id = 1;
+                m.Available = true;
+
                 /*if (Request.Cookies["access_token"] != null)
                 {
                     cookieValue = Request.Cookies["access_token"].Value;
@@ -340,6 +347,86 @@ namespace App.Controllers
                 }
             }
             return View(r);
+        }
+
+        public ActionResult CountOfEachType()
+        {
+            string cookieValue = string.Empty;
+            IEnumerable<Room> r = null;
+
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(BaseAddress);
+
+                /*if (Request.Cookies["access_token"] != null)
+                {
+                    cookieValue = Request.Cookies["access_token"].Value;
+                }*/
+
+                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", cookieValue);
+
+                var responseTask = client.GetAsync("Room/GetTypeCount");
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<IList<Room>>();
+                    readTask.Wait();
+                    r = readTask.Result;
+                }
+                else
+                {
+                    r = Enumerable.Empty<Room>();
+                    ModelState.AddModelError(string.Empty, "Server error try after some time.");
+                }
+            }
+           
+            RoomRepo rep = new RoomRepo();
+            var counter = rep.GetCountOfType(r);
+            ViewBag.dict = counter;
+            return View();
+        }
+
+        public ActionResult CountOfAvailableType()
+        {
+            string cookieValue = string.Empty;
+            IEnumerable<Room> r = null;
+
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(BaseAddress);
+
+                /*if (Request.Cookies["access_token"] != null)
+                {
+                    cookieValue = Request.Cookies["access_token"].Value;
+                }*/
+
+                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", cookieValue);
+
+                var responseTask = client.GetAsync("Room/Available/GetTypeCount");
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<IList<Room>>();
+                    readTask.Wait();
+                    r = readTask.Result;
+                }
+                else
+                {
+                    r = Enumerable.Empty<Room>();
+                    ModelState.AddModelError(string.Empty, "Server error try after some time.");
+                }
+            }
+
+            RoomRepo rep = new RoomRepo();
+            var counter = rep.GetCountOfType(r);
+            ViewBag.dict = counter;
+            return View();
         }
     }
 }

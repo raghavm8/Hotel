@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<App.Models.Room>
 
+<h2>All Rooms</h2>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -40,6 +41,17 @@
     }
 </table>
 
-@Html.ActionLink("Booked", "GetBooked") |
-@Html.ActionLink("Occupied", "GetOccupied") |
-@Html.ActionLink("All", "GetAll")
+<div>
+    <center>
+        @Html.ActionLink("Booked", "GetBooked", new { }, new { @class = "btn btn-default", @style = "width:125px" })      
+        @Html.ActionLink("Occupied", "GetOccupied", new { }, new { @class = "btn btn-default", @style = "width:125px" })    
+        @Html.ActionLink("Vacant", "GetVacant", new { }, new { @class = "btn btn-default", @style = "width:125px" })  
+    </center>
+</div>
+<br/>
+<div>
+    <center>
+        @Html.ActionLink("Count of Each", "CountOfEachType", new { }, new { @class = "btn btn-default", @style = "width:125px" })
+        @Html.ActionLink("Count of Available", "CountOfAvailableType", new { }, new { @class = "btn btn-default", @style = "width:132px" })
+    </center>
+</div>

@@ -88,8 +88,10 @@ namespace voting.Controllers
             return View(m);
         }
 
+        [HttpGet]
         public ActionResult Create()
         {
+           
             return View();
         }
 
@@ -272,6 +274,9 @@ namespace voting.Controllers
             return View(r);
         }
 
-
+        public ActionResult CreateReservation()
+        {
+            return RedirectToAction("Create","Reservation");
+        }
     }
 }

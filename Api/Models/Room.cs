@@ -24,6 +24,7 @@ namespace Api.Models
         public Nullable<int> Status_Id { get; set; }
         public string RoomType { get; set; }
         public int Price { get; set; }
+        public bool Available { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reservation> Reservations { get; set; }

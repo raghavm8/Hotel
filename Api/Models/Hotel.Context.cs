@@ -31,5 +31,6 @@ namespace Api.Models
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Room> Rooms { get; set; }
         public virtual DbSet<Status> Status { get; set; }
+        public virtual DbSet<Counter> Counters { get; set; }
     }
 }

@@ -13,19 +13,20 @@ namespace App.Models
         public Nullable<int> Status_Id { get; set; }
         public string RoomType { get; set; }
         public int Price { get; set; }
+        public bool Available { get; set; }
 
         [DisplayName("Type of Room")]
-        public List<SelectListItem> type { get; set; }
+        public List<String> type { get; set; }
         
         public Room()
         {
-            List<SelectListItem> type1 = new List<SelectListItem>();
-            type1.Add(new SelectListItem { Text = "Simple", Value = "1"  });
-            type1.Add(new SelectListItem { Text = "King", Value = "2" });
-            type1.Add(new SelectListItem { Text = "Queen", Value = "3" });
-            type1.Add(new SelectListItem { Text = "Twin", Value = "4" });
-            type1.Add(new SelectListItem { Text = "Villa", Value = "5" });
-            type1.Add(new SelectListItem { Text = "Suite", Value = "6" });
+            List<String> type1 = new List<String>();
+            type1.Add("Simple");
+            type1.Add("King");
+            type1.Add("Queen");
+            type1.Add("Twin");
+            type1.Add("Villa");
+            type1.Add("Suite");
 
             type = type1;
         }

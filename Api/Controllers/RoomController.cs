@@ -140,5 +140,35 @@ namespace Api.Controllers
                 return NotFound();
             }
         }
+
+        [HttpGet]
+        [Route("Room/GetTypeCount")]
+        public IHttpActionResult GetAllTypes()
+        {
+            try
+            {
+                var x = repo.GetAllRooms();
+                return Ok(x);
+            }
+            catch (Exception)
+            {
+                return NotFound();
+            }
+        }
+    
+        [HttpGet]
+        [Route("Room/Available/GetTypeCount")]
+        public IHttpActionResult GetAllAvailableWithTypeCount()
+        {
+            try
+            {
+                var x = repo.GetAvailableWithCount();
+                return Ok(x);
+            }
+            catch (Exception)
+            {
+                return NotFound();
+            }
+        }
     }
 }

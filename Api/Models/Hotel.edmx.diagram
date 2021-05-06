@@ -16,6 +16,7 @@
         <AssociationConnector Association="HotelDBModel.FK__payments__Reserv__32E0915F" ManuallyRouted="false" />
         <AssociationConnector Association="HotelDBModel.FK__Reservati__Room___2F10007B" ManuallyRouted="false" />
         <AssociationConnector Association="HotelDBModel.FK__Room__Status_Id__2D27B809" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="HotelDBModel.Counter" Width="1.5" PointX="6.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

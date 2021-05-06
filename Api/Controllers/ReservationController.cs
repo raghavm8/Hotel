@@ -109,5 +109,19 @@ namespace Api.Controllers
                 return NotFound();
             }
         }
+    
+        [HttpGet]
+        [Route("Reservation/Reservation/{id}")]
+        public IHttpActionResult GetAvailability(int id)
+        {
+            try
+            {
+                return Ok(repo.GetRoomAvailability(id));
+            }
+            catch (Exception)
+            {
+                return NotFound();
+            }
+        }
     }
 }

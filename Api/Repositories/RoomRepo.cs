@@ -54,5 +54,11 @@ namespace Api.Repositories
         {
             return entity.Rooms.ToList().FindAll(i => i.Status_Id == 3);
         }
+
+        // only for admin
+        public List<Room> GetAvailableWithCount()
+        {
+            return this.GetVacantRooms();
+        }
     }
 }

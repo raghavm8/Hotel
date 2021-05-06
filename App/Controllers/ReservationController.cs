@@ -111,10 +111,13 @@ namespace voting.Controllers
                 var postTask = client.PostAsJsonAsync<Reservation>("Reservation/AddNewReservation", m);
                 postTask.Wait();
 
+                
+                int guestId = m.Guest_Id;
                 var result = postTask.Result;
                 if (result.IsSuccessStatusCode)
                 {
-                    return RedirectToAction("Index");
+
+                    return RedirectToAction("Index","Guest");
                 }
             }
 
@@ -154,7 +157,7 @@ namespace voting.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit([Bind(Include = "ReservationId, Name, DOB, PollId")] Reservation m)
+        public ActionResult Edit([Bind(Include = "Reservation_Id, Guest_Id, Room_Id, Reservation_Date, Members, Check_In_Date, Check_Out_Date")] Reservation m)
         {
             using (HttpClient client = new HttpClient())
             {

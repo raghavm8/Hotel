@@ -1,0 +1,39 @@
+﻿@model App.ViewModel.Counter
+
+@{
+    ViewBag.Title = "CountOfEachType";
+}
+
+<h2>Count Of Each Room Type</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Type of Room
+        </th>
+        <th>
+            Number of Rooms Present
+        </th>
+    </tr>
+
+    @{
+        foreach (KeyValuePair<string, int> item in ViewBag.dict)
+        {
+            <tr>
+                <td>
+                    @item.Key
+                </td>
+                <td>
+                    @item.Value
+                </td>
+            </tr>
+        }
+    }
+
+</table>
+
+
+<div>
+    @Html.ActionLink("Back", "GetAll", new { }, new { @class = "btn btn-default", @style = "width:100px" });
+</div>

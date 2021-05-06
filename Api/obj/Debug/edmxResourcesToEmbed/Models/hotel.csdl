@@ -56,6 +56,7 @@
     <Property Name="Price" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Reservations" Relationship="Self.FK__Reservati__Room___2F10007B" FromRole="Room" ToRole="Reservation" />
     <NavigationProperty Name="Status" Relationship="Self.FK__Room__Status_Id__2D27B809" FromRole="Room" ToRole="Status" />
+    <Property Name="Available" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="Status">
     <Key>

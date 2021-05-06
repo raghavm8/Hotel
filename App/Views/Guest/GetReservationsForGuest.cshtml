@@ -7,9 +7,7 @@
 
 <h2>GetReservationsForGuest</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
         <th>
@@ -35,25 +33,29 @@
 
         i = item.Guest_Id;
 
-        <tr>
-            @Html.HiddenFor(modelItem => item.Reservation_Id)
-            @Html.HiddenFor(modelItem => item.Guest_Id)
-            <td>
-                @Html.DisplayFor(modelItem => item.Room_Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Reservation_Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Members)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Check_In_Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Check_Out_Date)
-            </td>
-        </tr>
+<tr>
+    @Html.HiddenFor(modelItem => item.Reservation_Id)
+    @Html.HiddenFor(modelItem => item.Guest_Id)
+    <td>
+        @Html.DisplayFor(modelItem => item.Room_Id)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Reservation_Date)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Members)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Check_In_Date)
+    </td>
+    
+    <td>
+        @Html.DisplayFor(modelItem => item.Check_Out_Date)
+    </td>
+    <td>
+        @Html.ActionLink("Delete", "Delete", new { id = item.Reservation_Id }) |
+    </td>
+</tr>
     }
 
 </table>
